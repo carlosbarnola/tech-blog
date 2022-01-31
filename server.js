@@ -8,6 +8,9 @@ const path = require('path');
 
 const session = require('express-session');
 
+const app = express();
+const PORT = process.env.PORT || 3001;
+
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
@@ -20,8 +23,6 @@ const sess = {
   })
 };
 
-const app = express();
-const PORT = process.env.PORT || 3001;
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
@@ -35,6 +36,6 @@ app.use(session(sess));
 app.use(routes);
 
 // turn on connection to db and server
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });

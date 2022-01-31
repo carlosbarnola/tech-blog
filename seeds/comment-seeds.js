@@ -26,7 +26,7 @@ const commentData = [
         post_id: 2,
         comment_text: "This is another comment"
     }    
-]
+];
 
 const seedComments = () => Comment.bulkCreate(commentData);
 
